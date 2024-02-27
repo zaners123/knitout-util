@@ -4,8 +4,8 @@ This file makes a glove consisting of:
 	- A palm that widens out to start the thumb early
 	- Five fingers sewn in parallel ending in closed loops
 */
-const lib = require('./lib/lib');
-let k = new lib.SmartWriter();
+const lib = require('./lib/knitout_util');
+let k = new lib.KnitoutUtil();
 
 const COLOR_RIB     = '6';
 const COLOR_CONE    = '6';
@@ -33,15 +33,14 @@ const X5=70
 const X6=84//thumb
 
 //main rib
-k.run(
-	k.wrap_autohook(
-		k.wrap_serial(
-			// k.gen_skiptube(COLOR_RIB,4,X1,X5,k.RIBTUBE1x1),
-			k.gen_arbtube(k.RIB1X1,COLOR_RIB,COURSES_RIB, X1, X5),
-			k.gen_tubeswitch_arbitrary(k.RIB1X1, k.STOCKINETTE, COLOR_RIB, X1, X5),
-		)
-	,COLOR_RIB,true,true,false)
-)
+k.run_autohook(
+	k.wrap_serial(
+		// k.gen_skiptube(COLOR_RIB,4,X1,X5,k.RIBTUBE1x1),
+		k.gen_arbtube(k.RIB1X1,COLOR_RIB,COURSES_RIB, X1, X5),
+		k.gen_tubeswitch_arbitrary(k.RIB1X1, k.STOCKINETTE, COLOR_RIB, X1, X5),
+	)
+,COLOR_RIB,true,true,false)
+
 
 //main palm
 k.run(k.gen_arbtube(k.STOCKINETTE, COLOR_CONE, 5, X1, X5));

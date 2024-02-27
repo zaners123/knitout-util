@@ -6,8 +6,8 @@ This file makes a sweater consisting of:
  - A torso ending in a rib stitch
 
 */
-const lib = require('./lib/lib');
-let k = new lib.SmartWriter();
+const lib = require('./lib/knitout_util');
+let k = new lib.KnitoutUtil();
 
 const COLOR_CHEST   = '6'
 const COLOR_LEFT    = '7'
@@ -79,4 +79,4 @@ k.run_parallel(sleeve_left, chest, sleeve_right)
 // k.bindoffTubeOpen(COLOR_LEFT, X1, X2)
 // k.bindoffTubeOpen(COLOR_RIGHT, X5+2, X6)
 
-k.write('out/top.k');
+k.write('out/sweater.k');
