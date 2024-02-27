@@ -1,9 +1,10 @@
 /*
-The goal is to do:
-	1. a tube tie-on
-	2. 1" of 2x2 rib
-	3. About 200 seed-stitch loops with stripes
-	4. A tube-closing tieoff
+This file makes a sweater consisting of:
+ - A rib stitch collar
+ - Shoulders that widen out
+ - Sleeves ending in a rib stitch
+ - A torso ending in a rib stitch
+
 */
 const lib = require('./lib/lib');
 let k = new lib.SmartWriter();
@@ -15,8 +16,8 @@ const COLOR_RIGHT   = '8'
 const CENTER = 50
 
 const COURSES_COLLAR    = 26
-const COURSES_CHEST     = 32//60
-const COURSES_SLEEVES   = 26//42
+const COURSES_CHEST     = 20//60
+const COURSES_SLEEVES   = 20//42
 
 const WALES_NECK = 40//60
 const WALES_TORSO = 40//100
@@ -31,14 +32,14 @@ const X6=X5+WALES_SLEEVE
 
 //main collar
 k.run(k.wrap_autohook(
-	k.gen_arbtube(k.RIBTUBE1x1,COLOR_LEFT,COURSES_COLLAR, X3, X4),
+	k.gen_arbtube(k.RIB1X1,COLOR_LEFT,COURSES_COLLAR, X3, X4),
 	COLOR_LEFT,true,true,false)
 )
 
 //main shoulder cone
-k.run(k.gen_arbtube(k.GARTERTUBE, COLOR_LEFT, 5, X3, X4));
+k.run(k.gen_arbtube(k.GARTER, COLOR_LEFT, 5, X3, X4));
 
-k.run(k.gen_arbtube_varyingdiameter(k.GARTERTUBE, COLOR_LEFT,X3, X4, function*() {
+k.run(k.gen_arbtube_varyingdiameter(k.GARTER, COLOR_LEFT,X3, X4, function*() {
 	yield 0
 	const RADIUS = 12
 	for (let i=0;i<=RADIUS;i++) {
@@ -58,19 +59,19 @@ for (let x of [X2-2,X5]) gap(x)
 
 //sleeves
 let sleeve_left  = k.wrap_autohook(k.wrap_serial(
-	k.gen_arbtube(k.GARTERTUBE, COLOR_LEFT,COURSES_SLEEVES,X1,X2-2),
+	k.gen_arbtube(k.GARTER, COLOR_LEFT,COURSES_SLEEVES,X1,X2-2),
 	//k.gen_bindoffTubeOpen(COLOR_LEFT,X1,X2-2)
 ),COLOR_LEFT,false,false,true);
 
 let chest = k.wrap_serial(
 	k.wrap_autohook(k.wrap_serial(
-		k.gen_arbtube(k.GARTERTUBE, COLOR_CHEST,COURSES_CHEST,X2,X5),
+		k.gen_arbtube(k.GARTER, COLOR_CHEST,COURSES_CHEST,X2,X5),
 		// k.gen_bindoffTubeOpen(COLOR_CHEST,X2,X5)
 	),COLOR_CHEST)
 )
 
 let sleeve_right = k.wrap_autohook(k.wrap_serial(
-	k.gen_arbtube(k.GARTERTUBE, COLOR_RIGHT,COURSES_SLEEVES,X5+2,X6),
+	k.gen_arbtube(k.GARTER, COLOR_RIGHT,COURSES_SLEEVES,X5+2,X6),
 	// k.gen_bindoffTubeOpen(COLOR_CHEST,X2,X5)
 ),COLOR_RIGHT);
 

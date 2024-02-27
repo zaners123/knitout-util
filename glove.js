@@ -1,9 +1,8 @@
 /*
-The goal is to do:
-	1. a tube tie-on
-	2. 1" of 2x2 rib
-	3. About 200 seed-stitch loops with stripes
-	4. A tube-closing tieoff
+This file makes a glove consisting of:
+	- A rib stitch open tube
+	- A palm that widens out to start the thumb early
+	- Five fingers sewn in parallel ending in closed loops
 */
 const lib = require('./lib/lib');
 let k = new lib.SmartWriter();
@@ -38,15 +37,15 @@ k.run(
 	k.wrap_autohook(
 		k.wrap_serial(
 			// k.gen_skiptube(COLOR_RIB,4,X1,X5,k.RIBTUBE1x1),
-			k.gen_arbtube(k.RIBTUBE1x1,COLOR_RIB,COURSES_RIB, X1, X5),
-			k.gen_switch_arbitrary(COLOR_RIB,X1,X5,k.RIBTUBE1x1,k.STOCKINETTETUBE),
+			k.gen_arbtube(k.RIB1X1,COLOR_RIB,COURSES_RIB, X1, X5),
+			k.gen_tubeswitch_arbitrary(k.RIB1X1, k.STOCKINETTE, COLOR_RIB, X1, X5),
 		)
 	,COLOR_RIB,true,true,false)
 )
 
 //main palm
-k.run(k.gen_arbtube(k.STOCKINETTETUBE, COLOR_CONE, 5, X1, X5));
-k.run(k.gen_arbcone(k.STOCKINETTETUBE, COLOR_CONE, COURSES_CONE, X1, X5, X1, X6))
+k.run(k.gen_arbtube(k.STOCKINETTE, COLOR_CONE, 5, X1, X5));
+k.run(k.gen_arbcone(k.STOCKINETTE, COLOR_CONE, COURSES_CONE, X1, X5, X1, X6))
 
 function fingergap(x) {
 	k.xfer('f'+(x+1),'b'+(x+1))
@@ -59,39 +58,36 @@ function fingergap(x) {
 fingergap(X5);
 
 let thumb = k.wrap_autohook(k.wrap_serial(
-	k.gen_arbtube(k.STOCKINETTETUBE, COLOR_THUMB, COURSES_THUMB, X5+2, X6),
+	k.gen_arbtube(k.STOCKINETTE, COLOR_THUMB, COURSES_THUMB, X5+2, X6),
 	k.gen_bindoffFront(COLOR_THUMB,X5+2,X6,true)
 ),COLOR_THUMB)
 
-let palm = k.gen_arbtube(k.STOCKINETTETUBE, COLOR_PALM, COURSES_PALM, X1, X5)
+let palm = k.gen_arbtube(k.STOCKINETTE, COLOR_PALM, COURSES_PALM, X1, X5)
 
 //main palm and thumb
 k.run_parallel(palm,thumb)
 
 //main fingers
 let pinkie  = k.wrap_autohook(k.wrap_serial(
-	k.gen_arbtube(k.STOCKINETTETUBE, COLOR_PINKIE,COURSES_PINKIE,X1,X2),
+	k.gen_arbtube(k.STOCKINETTE, COLOR_PINKIE,COURSES_PINKIE,X1,X2),
 	k.gen_bindoffFront(COLOR_PINKIE,X1,X2)
 ),COLOR_PINKIE,false,false,true);
 
-let ring   = k.wrap_serial(
-	k.wrap_autohook(k.wrap_serial(
-		k.gen_arbtube(k.STOCKINETTETUBE, COLOR_RING,COURSES_RING,X2+2,X3),
-		k.gen_bindoffFront(COLOR_RING, X2+2, X3)
-	),COLOR_RING)
-)
-let middle = k.wrap_serial(
-	k.wrap_autohook(k.wrap_serial(
-		k.gen_arbtube(k.STOCKINETTETUBE, COLOR_MIDDLE,COURSES_MIDDLE,X3+2,X4),
-		k.gen_bindoffFront(COLOR_MIDDLE, X3+2, X4)
-	),COLOR_MIDDLE)
-)
-let index  = k.wrap_serial(
-	k.wrap_autohook(k.wrap_serial(
-		k.gen_arbtube(k.STOCKINETTETUBE, COLOR_INDEX,COURSES_INDEX,X4+2,X5),
-		k.gen_bindoffFront(COLOR_INDEX, X4+2, X5)
-	),COLOR_INDEX)
-)
+let ring   = k.wrap_autohook(
+	k.wrap_serial(
+	k.gen_arbtube(k.STOCKINETTE, COLOR_RING,COURSES_RING,X2+2,X3),
+	k.gen_bindoffFront(COLOR_RING, X2+2, X3)
+),COLOR_RING)
+
+let middle = k.wrap_autohook(k.wrap_serial(
+	k.gen_arbtube(k.STOCKINETTE, COLOR_MIDDLE,COURSES_MIDDLE,X3+2,X4),
+	k.gen_bindoffFront(COLOR_MIDDLE, X3+2, X4)
+),COLOR_MIDDLE)
+
+let index  = k.wrap_autohook(k.wrap_serial(
+	k.gen_arbtube(k.STOCKINETTE, COLOR_INDEX,COURSES_INDEX,X4+2,X5),
+	k.gen_bindoffFront(COLOR_INDEX, X4+2, X5)
+),COLOR_INDEX)
 
 //other finger gaps
 for (let x of [X2,X3,X4]) fingergap(x)
