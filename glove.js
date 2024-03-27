@@ -16,7 +16,7 @@ const COLOR_RING    = '7';
 const COLOR_MIDDLE  = '8';
 const COLOR_INDEX   = '9';
 
-const COURSES_RIB   = 50;
+const COURSES_RIB   = 56;
 const COURSES_CONE  = 30;
 const COURSES_PALM  = 24;
 const COURSES_THUMB = 30;
@@ -29,13 +29,14 @@ const X1=30
 const X2=40
 const X3=50
 const X4=60
-const X5=70
-const X6=84//thumb
+const X5=60
+const X6=82//thumb
 
 //main rib
 k.run_autohook(
 	k.wrap_serial(
-		// k.gen_skiptube(COLOR_RIB,4,X1,X5,k.RIBTUBE1x1),
+		//try this for tubes instead
+		k.gen_skiptube(COLOR_RIB,4,X1,X5,k.RIB1X1),
 		k.gen_arbtube(k.RIB1X1,COLOR_RIB,COURSES_RIB, X1, X5),
 		k.gen_tubeswitch_arbitrary(k.RIB1X1, k.STOCKINETTE, COLOR_RIB, X1, X5),
 	)

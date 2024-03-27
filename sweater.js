@@ -4,7 +4,6 @@ This file makes a sweater consisting of:
  - Shoulders that widen out
  - Sleeves ending in a rib stitch
  - A torso ending in a rib stitch
-
 */
 const lib = require('./lib/knitout_util');
 let k = new lib.KnitoutUtil();
@@ -15,7 +14,7 @@ const COLOR_RIGHT   = '8'
 
 const CENTER = 50
 
-const COURSES_COLLAR    = 26
+const COURSES_COLLAR    = 24
 const COURSES_CHEST     = 20//60
 const COURSES_SLEEVES   = 20//42
 
@@ -37,17 +36,20 @@ k.run(k.wrap_autohook(
 )
 
 //main shoulder cone
-k.run(k.gen_arbtube(k.GARTER, COLOR_LEFT, 5, X3, X4));
-
-k.run(k.gen_arbtube_varyingdiameter(k.GARTER, COLOR_LEFT,X3, X4, function*() {
-	yield 0
-	const RADIUS = 12
-	for (let i=0;i<=RADIUS;i++) {
-		let val = (X3-X1-RADIUS)+RADIUS*Math.sin(i* Math.PI/2/RADIUS)
-		val = Math.round(val/2)*2
-		yield val
-	}
-}))
+k.run_serial(
+	k.gen_tubeswitch_arbitrary(k.RIB1X1, k.STOCKINETTE, COLOR_LEFT, X3, X4),
+	k.gen_arbtube(k.STOCKINETTE, COLOR_LEFT, 5, X3, X4),
+	k.gen_arbtube_varyingdiameter(k.STOCKINETTE, COLOR_LEFT,X3, X4, function*() {
+		yield 0
+		const RADIUS = 12
+		for (let i=0;i<=RADIUS;i++) {
+			let val = (X3-X1-RADIUS)+RADIUS*Math.sin(i* Math.PI/2/RADIUS)
+			val = Math.round(val/2)*2
+			yield val
+		}
+	}),
+	k.gen_arbtube(k.STOCKINETTE, COLOR_LEFT, 10, X1, X6)
+)
 
 function gap(x) {
 	k.xfer('f'+(x+1),'b'+(x+1))
@@ -59,24 +61,27 @@ for (let x of [X2-2,X5]) gap(x)
 
 //sleeves
 let sleeve_left  = k.wrap_autohook(k.wrap_serial(
-	k.gen_arbtube(k.GARTER, COLOR_LEFT,COURSES_SLEEVES,X1,X2-2),
-	//k.gen_bindoffTubeOpen(COLOR_LEFT,X1,X2-2)
+	k.gen_arbtube(k.STOCKINETTE, COLOR_LEFT,COURSES_SLEEVES,X1,X2-2),
+	k.gen_tubeswitch_arbitrary(k.STOCKINETTE, k.RIB1X1, COLOR_LEFT, X1, X2-2),
+	k.gen_arbtube(k.RIB1X1, COLOR_LEFT,24,X1,X2-2),
 ),COLOR_LEFT,false,false,true);
 
 let chest = k.wrap_serial(
 	k.wrap_autohook(k.wrap_serial(
-		k.gen_arbtube(k.GARTER, COLOR_CHEST,COURSES_CHEST,X2,X5),
+		k.gen_arbtube(k.STOCKINETTE, COLOR_CHEST,COURSES_CHEST,X2,X5),
+		k.gen_tubeswitch_arbitrary(k.STOCKINETTE, k.RIB1X1, COLOR_CHEST, X2, X5),
+		k.gen_arbtube(k.RIB1X1, COLOR_CHEST,24,X2,X5),
 		// k.gen_bindoffTubeOpen(COLOR_CHEST,X2,X5)
 	),COLOR_CHEST)
 )
 
 let sleeve_right = k.wrap_autohook(k.wrap_serial(
-	k.gen_arbtube(k.GARTER, COLOR_RIGHT,COURSES_SLEEVES,X5+2,X6),
+	k.gen_arbtube(k.STOCKINETTE, COLOR_RIGHT,COURSES_SLEEVES,X5+2,X6),
+	k.gen_tubeswitch_arbitrary(k.STOCKINETTE, k.RIB1X1, COLOR_RIGHT, X5+2, X6),
+	k.gen_arbtube(k.RIB1X1, COLOR_RIGHT,24,X5+2,X6),
 	// k.gen_bindoffTubeOpen(COLOR_CHEST,X2,X5)
 ),COLOR_RIGHT);
 
 k.run_parallel(sleeve_left, chest, sleeve_right)
-// k.bindoffTubeOpen(COLOR_LEFT, X1, X2)
-// k.bindoffTubeOpen(COLOR_RIGHT, X5+2, X6)
 
 k.write('out/sweater.k');
