@@ -2,3 +2,4 @@ out/
 .idea/
 node_modules/
 makefile
+package-lock.json
