@@ -1,10 +1,10 @@
 # Knitout Util By Zaners123
 
 Knitout Util creates knitout files for you, with the ability to make garments like:
- - [Sweaters](./sweater.js)
- - [Socks](./sock.js)
- - [Gloves](./glove.js)
- - [Patterns](./patterns.js) (Such as Rib, Garter, Seed, and Diagonal Stitch)
+ - [Sweaters](examples/sweater.js)
+ - [Socks](examples/sock.js)
+ - [Gloves](examples/glove.js)
+ - [Patterns](examples/patterns.js) (Such as Rib, Garter, Seed, and Diagonal Stitch)
 
 This assumes you have a machine capable of running compiled knitout, such as a Kniterate or a ShimaSeiki SSG.
 

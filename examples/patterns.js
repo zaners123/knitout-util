@@ -1,7 +1,7 @@
 /*
 This file makes a line of basic stitch patterns, as listed below
 * */
-const lib = require('./lib/knitout_util');
+const lib = require('../lib/knitout_util');
 let k = new lib.KnitoutUtil();
 
 const COLOR = '6';

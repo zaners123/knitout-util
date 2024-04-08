@@ -1,7 +1,7 @@
 /*
 This file makes a multicolor zig-zag
 * */
-const lib = require('./lib/knitout_util');
+const lib = require('../lib/knitout_util');
 let k = new lib.KnitoutUtil();
 
 const COLOR_A = '6';
@@ -53,7 +53,7 @@ zigzag(k.SEED, 4, 2)
 // Doubleknit
 
 var getPixels = require("get-pixels")
-getPixels("double.png", function(err, pixels) {
+getPixels("image_test.png", function(err, pixels) {
 	if(err) {
 		console.log("Bad image path")
 		return
