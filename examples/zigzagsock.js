@@ -57,8 +57,8 @@ const wave = shape_sinwave(X1,X2,24)
 let halfwave = shape_sinwave(X1,X2,12)
 const interleave = merge001122(halfwave, halfwave.slice().reverse())
 
-k.run_autohook(k.gen_bindon_tube_open(k.RIB1X1, COLOR_A, X1, X2), COLOR_A, true, true, false)
-k.run_autohook(k.gen_bindon_tube_open(k.RIB1X1, COLOR_B, X1, X2), COLOR_B, true, true, false)
+k.run_autohook(k.gen_bindon_tube_open(k.STOCKINETTE, COLOR_A, X1, X2), COLOR_A, true, true, false)
+k.run_autohook(k.gen_bindon_tube_open(k.STOCKINETTE, COLOR_B, X1, X2), COLOR_B, true, true, false)
 k.knit_line_of_tube(k.STOCKINETTE.front[0], COLOR_B, X1, X2, '+','f')
 
 k.run_serial(
