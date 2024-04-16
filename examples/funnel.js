@@ -1,3 +1,5 @@
+//TODO not finished - hooking on & off needs to be optimized
+
 /*
 This file makes a tube sock of:
    - A halfgauge 1x1 rib followed by a halfgauge stockinette
