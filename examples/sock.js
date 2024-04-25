@@ -33,7 +33,7 @@ k.run_serial(
 	k.wrap_autohook(k.wrap_serial(
 		k.gen_arbtube(k.RIB2X2, COLOR_STRIPEB, COURSES_PER_STRIPE, X1, X2),
 		k.gen_arbtube(k.STOCKINETTE,COLOR_STRIPEB, 4, X1, X2),
-		k.gen_bindoff_closed(COLOR_STRIPEB, X1, X2)
+		k.gen_bindoff_fg_closed(COLOR_STRIPEB, X1, X2)
 	),COLOR_STRIPEB)
 )
 

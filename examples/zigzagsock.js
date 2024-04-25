@@ -66,7 +66,7 @@ k.run_serial(
 	k.gen_tube_dualcarrier(k.STOCKINETTE, COLOR_A, COLOR_B, X1, zig, zigB, X2),
 	k.gen_tube_dualcarrier(k.GARTER, COLOR_A, COLOR_B, X1,wave, wave, X2),
 	k.gen_tube_dualcarrier(k.DIAGONAL, COLOR_A, COLOR_B, X1, interleave, interleave, X2),
-	k.gen_bindoff_closed(COLOR_A, X1, X2,false)
+	k.gen_bindoff_fg_closed(COLOR_A, X1, X2)
 )
 
 k.outhook(COLOR_A)

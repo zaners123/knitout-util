@@ -59,7 +59,7 @@ fingergap(X5);
 
 let thumb = k.wrap_autohook(k.wrap_serial(
 	k.gen_arbtube(k.STOCKINETTE, COLOR_THUMB, COURSES_THUMB, X5+2, X6),
-	k.gen_bindoff_closed(COLOR_THUMB,X5+2,X6)
+	k.gen_bindoff_fg_closed(COLOR_THUMB,X5+2,X6)
 ),COLOR_THUMB)
 
 let palm = k.gen_arbtube(k.STOCKINETTE, COLOR_PALM, COURSES_PALM, X1, X5)
@@ -70,23 +70,23 @@ k.run_parallel(palm,thumb)
 //main fingers
 let pinkie  = k.wrap_autohook(k.wrap_serial(
 	k.gen_arbtube(k.STOCKINETTE, COLOR_PINKIE,COURSES_PINKIE,X1,X2),
-	k.gen_bindoff_closed(COLOR_PINKIE,X1,X2)
+	k.gen_bindoff_fg_closed(COLOR_PINKIE,X1,X2)
 ),COLOR_PINKIE,false,false,true);
 
 let ring   = k.wrap_autohook(
 	k.wrap_serial(
 	k.gen_arbtube(k.STOCKINETTE, COLOR_RING,COURSES_RING,X2+2,X3),
-	k.gen_bindoff_closed(COLOR_RING, X2+2, X3)
+	k.gen_bindoff_fg_closed(COLOR_RING, X2+2, X3)
 ),COLOR_RING)
 
 let middle = k.wrap_autohook(k.wrap_serial(
 	k.gen_arbtube(k.STOCKINETTE, COLOR_MIDDLE,COURSES_MIDDLE,X3+2,X4),
-	k.gen_bindoff_closed(COLOR_MIDDLE, X3+2, X4)
+	k.gen_bindoff_fg_closed(COLOR_MIDDLE, X3+2, X4)
 ),COLOR_MIDDLE)
 
 let index  = k.wrap_autohook(k.wrap_serial(
 	k.gen_arbtube(k.STOCKINETTE, COLOR_INDEX,COURSES_INDEX,X4+2,X5),
-	k.gen_bindoff_closed(COLOR_INDEX, X4+2, X5)
+	k.gen_bindoff_fg_closed(COLOR_INDEX, X4+2, X5)
 ),COLOR_INDEX)
 
 //other finger gaps

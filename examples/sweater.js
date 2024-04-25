@@ -64,21 +64,21 @@ for (let x of [X2-2,X2-1,X5,X5+1]) gap(x)
 let sleeve_left  = k.wrap_autohook(k.wrap_serial(
 	k.gen_arbtube(k.STOCKINETTE, COLOR_LEFT,COURSES_SLEEVES,X1,X2-2),
 	k.gen_arbtube(k.RIB1X1,      COLOR_LEFT,24,X1,X2-2),
-	k.gen_bindoff_halfgauge_tube_open(COLOR_LEFT, X1, X2-2)
+	k.gen_bindoff_hg_opentube(COLOR_LEFT, X1, X2-2)
 ),COLOR_LEFT,false,false,true);
 
 let chest = k.wrap_serial(
 	k.wrap_autohook(k.wrap_serial(
 		k.gen_arbtube(k.STOCKINETTE, COLOR_CHEST,COURSES_CHEST,X2,X5),
 		k.gen_arbtube(k.RIB1X1,      COLOR_CHEST,24,X2,X5),
-		k.gen_bindoff_halfgauge_tube_open(COLOR_CHEST, X2, X5)
+		k.gen_bindoff_hg_opentube(COLOR_CHEST, X2, X5)
 	),COLOR_CHEST)
 )
 
 let sleeve_right = k.wrap_autohook(k.wrap_serial(
 	k.gen_arbtube(k.STOCKINETTE, COLOR_RIGHT,COURSES_SLEEVES,X5+2,X6),
 	k.gen_arbtube(k.RIB1X1,      COLOR_RIGHT,24,X5+2,X6),
-	k.gen_bindoff_halfgauge_tube_open(COLOR_RIGHT, X5+2, X6)
+	k.gen_bindoff_hg_opentube(COLOR_RIGHT, X5+2, X6)
 ),COLOR_RIGHT);
 
 k.run_parallel(sleeve_left, chest, sleeve_right)
